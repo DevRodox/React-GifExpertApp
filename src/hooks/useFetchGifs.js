@@ -7,9 +7,13 @@ export const useFetchGifs = (category) => {
     const [isLoading, setIsLoading] = useState( true );
 
     const getImages = async()=> {
-        const newImages = await getGifs( category );
-        setImages( newImages );
-        setIsLoading( false );
+        try{
+            const newImages = await getGifs( category );
+            setImages( newImages );
+            setIsLoading( false );
+        }catch(error){
+            console.error('Error fetching gifs:', error);
+        }
     };
 
     useEffect( () => {
